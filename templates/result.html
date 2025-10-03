@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h2 { text-align: center; }
+        .result-row { display: flex; gap: 20px; margin-bottom: 30px; justify-content: center; }
+        .result-box { text-align: center; }
+        img { border: 1px solid #ccc; border-radius: 8px; max-width: 300px; height: auto; }
+        a { display: block; margin-top: 40px; text-align: center; text-decoration: none; font-size: 18px; color: #007BFF; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h2>Results</h2>
+
+    {% for rgb, pred, filename in results %}
+    <div class="result-row">
+        <div class="result-box">
+            <h3>{{ filename }} (RGB)</h3>
+            <img src="{{ url_for('static', filename='rgb/' + rgb) }}">
+        </div>
+        <div class="result-box">
+            <h3>{{ filename }} (Prediction)</h3>
+            <img src="{{ url_for('static', filename='predictions/' + pred) }}">
+        </div>
+    </div>
+    {% endfor %}
+
+    <a href="{{ url_for('index') }}">⬅ Back to Upload</a>
+</body>
+</html>
